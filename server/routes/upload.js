@@ -15,6 +15,7 @@ cloudinary.config({
 router.post('/upload',(rep,res)=>{
     try{
         console.log(req.files)
+        res.json('test upload')
     }catch(err){
         res.status(500).json({msg: err.message})
     }
