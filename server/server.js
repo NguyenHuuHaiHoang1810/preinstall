@@ -7,7 +7,23 @@ const cookieParser = require("cookie-parser");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser());
+app.use(fileUpload({
+  useTempFiles: true
+}))
+
+//routes
+app.use('/user',require('./routes/userRouter'))
+app.use('/api',require('./routes/categoryRouter'))
+app.use('/api',require('./routes/upload'))
+
+
+
+
+
+
+
+
+
 
 const URI = process.env.MONGODB_URL;
 mongoose.connect(
