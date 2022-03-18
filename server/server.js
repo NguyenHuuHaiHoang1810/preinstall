@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
+const jsonwebtoken = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
@@ -10,19 +12,6 @@ app.use(cors());
 app.use(fileUpload({
   useTempFiles: true
 }))
-
-//routes
-app.use('/user',require('./routes/userRouter'))
-app.use('/api',require('./routes/categoryRouter'))
-app.use('/api',require('./routes/upload'))
-
-
-
-
-
-
-
-
 
 
 const URI = process.env.MONGODB_URL;
@@ -37,6 +26,12 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
+
+//routes
+app.use('/user',require('./routes/userRouter'))
+app.use('/api',require('./routes/categoryRouter'))
+app.use('/api',require('./routes/upload'))
+
 
 const port = 5000;
 app.listen(port, () => {
