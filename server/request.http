@@ -1,0 +1,22 @@
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+  "name": "jim",
+  "email": "jim@gmail.com",
+  "password": "jim123"
+}
+###
+POST http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+  "email": "jim@gmail.com",
+  "password": "jim123"
+}
+###
+GET http://localhost:5000/user/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzVkOThlZDM3YWVhOWZjNDJlYzZhOSIsImlhdCI6MTY0NzY5NzU5MywiZXhwIjoxNjQ3NzgzOTkzfQ.o7HZAzjy6K9TIGsjVziBIo5f8R6gPlj10W8sgQpdIeM
+
+
