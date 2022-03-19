@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "email": "jim@gmail.com",
-  "password": "jim123"
+  "password": "jim1231"
 }
 ###
 GET http://localhost:5000/user/logout
