@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
-const jsonwebtoken = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
@@ -29,8 +28,8 @@ mongoose.connect(
 
 //routes
 app.use('/user',require('./routes/userRouter'))
-app.use('/api',require('./routes/categoryRouter'))
-app.use('/api',require('./routes/upload'))
+//app.use('/api',require('./routes/categoryRouter'))
+//app.use('/api',require('./routes/upload'))
 
 
 const port = 5000;
