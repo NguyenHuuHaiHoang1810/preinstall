@@ -12,11 +12,19 @@ Content-Type: application/json
 
 {
   "email": "jim@gmail.com",
-  "password": "jim1231"
+  "password": "jim123"
 }
 ###
 GET http://localhost:5000/user/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzVkOThlZDM3YWVhOWZjNDJlYzZhOSIsImlhdCI6MTY0NzY5NzU5MywiZXhwIjoxNjQ3NzgzOTkzfQ.o7HZAzjy6K9TIGsjVziBIo5f8R6gPlj10W8sgQpdIeM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzVkOThlZDM3YWVhOWZjNDJlYzZhOSIsImlhdCI6MTY0Nzc1MzU2MiwiZXhwIjoxNjQ3ODM5OTYyfQ.Nd1aXd8_Nv8GlcDD0RVDB6oN3rlqzcscyfS9-RqPsoQ
 
+###
+GET http://localhost:5000/user/infor
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzVkOThlZDM3YWVhOWZjNDJlYzZhOSIsImlhdCI6MTY0Nzc1MzU2MiwiZXhwIjoxNjQ3ODM5OTYyfQ.Nd1aXd8_Nv8GlcDD0RVDB6oN3rlqzcscyfS9-RqPsoQ
 
+{
+  "email": "jim@gmail.com",
+  "password": "jim123"
+}
