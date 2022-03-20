@@ -44,10 +44,77 @@ const userCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
-  refreshToken: (req, res) => {
-    const rf_token = req.cookies.refreshtoken;
-    res.json({ rf_token });
+
+  login: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+
+      const user = await Users.findOne({ email });
+      if (!user)
+        return res.status(400).json({ msg: "Tên đăng nhập không tồn tại!" });
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) return res.status(400).json({ msg: "Sai mật khẩu!" });
+
+      //!Néu như đăng nhập thành công thì tạo accesstoken (vé vào cửa) và refreshtoken
+      const accesstoken = createAccessToken({ id: user._id });
+      const refreshtoken = createRefreshToken({ id: user._id });
+
+      res.cookie("refreshtoken", refreshtoken, {
+        httpOnly: true,
+        path: "/user/refresh_token",
+        maxAge: 7 * 24 * 60 * 60 * 1000, // !7d
+      });
+
+      res.json({ accesstoken });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
   },
+
+  logout: async (req, res) => {
+    try {
+      res.clearCookie("refreshtoken", { path: "/user/refresh_token" });
+      return res.json({ msg: "Đăng xuất thành công!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  refreshToken: (req, res) => {
+    try {
+      const rf_token = req.cookies.refreshtoken;
+      if (!rf_token)
+        return res.status(400).json({ msg: "Hãy đăng nhập hoặc đăng ký!" });
+
+      jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+        if (err)
+          return res.status(400).json({ msg: "Hãy đăng nhập hoặc đăng ký!" });
+
+        const accesstoken = createAccessToken({ id: user.id });
+
+        res.json({ accesstoken });
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  getUser: async (req, res) => {
+    try {
+      const user = await Users.findById(req.user.id).select("-password");
+      if (!user)
+        return res.status(400).json({ msg: "Người dùng không tồn tại!" });
+
+      res.json(user);
+    } catch (error) {
+      return res.status(500).json({ msg: err.msg });
+    }
+  },
+
+  addCart: async (req, res) => {},
+
+  history: async (req, res) => {},
 };
 
 const createAccessToken = (user) => {
