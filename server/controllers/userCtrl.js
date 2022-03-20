@@ -54,8 +54,7 @@ const userCtrl = {
         return res.status(400).json({ msg: "Tên đăng nhập không tồn tại!" });
 
       const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch)
-        return res.status(400).json({ msg: "Sai mật khẩu!" });
+      if (!isMatch) return res.status(400).json({ msg: "Sai mật khẩu!" });
 
       //!Néu như đăng nhập thành công thì tạo accesstoken (vé vào cửa) và refreshtoken
       const accesstoken = createAccessToken({ id: user._id });
@@ -100,17 +99,22 @@ const userCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
   getUser: async (req, res) => {
     try {
-      const user = await Users.findById(req.user.id).select('-password')
-      if(!user) return res.status(400).json({msg: "Người dùng không tồn tại!"})
+      const user = await Users.findById(req.user.id).select("-password");
+      if (!user)
+        return res.status(400).json({ msg: "Người dùng không tồn tại!" });
 
-      res.json(user)
-
+      res.json(user);
     } catch (error) {
       return res.status(500).json({ msg: err.msg });
     }
   },
+
+  addCart: async (req, res) => {},
+
+  history: async (req, res) => {},
 };
 
 const createAccessToken = (user) => {
