@@ -39,7 +39,7 @@ const userCtrl = {
       });
 
       res.json({ accesstoken });
-      //res.json({ msg: "Bạn đã đăng ký thành công tài khoản mua sắm!" });
+      res.json({ msg: "Bạn đã đăng ký thành công tài khoản mua sắm!" });
     } catch (error) {
       return res.status(500).json({ msg: error.message });
     }
