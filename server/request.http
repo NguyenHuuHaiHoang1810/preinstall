@@ -11,8 +11,8 @@ POST http://localhost:5000/user/login
 Content-Type: application/json
 
 {
-  "email": "jim@gmail.com",
-  "password": "jim123"
+  "email": "hoang01@gmail.com",
+  "password": "18102001"
 }
 ###
 GET http://localhost:5000/user/logout
