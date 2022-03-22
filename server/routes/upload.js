@@ -20,7 +20,15 @@ router.post('/upload',(rep,res)=>{
 
             const file = req.files;
             if(file.size>1024*1024) return res.status(400).json({msg: "Size too large"})
-        res.json('test upload')
+
+            if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png')
+                    return res.status(400).json({msg:"File format is incorrect."})
+            cloudinary.v2.uploader.upload(file.tempFilePath,{folder:"test"},async(err,result)=>{
+                if(err) throw err;
+
+                res.json({result})
+            })
+            res.json('test upload')
     }catch(err){
         res.status(500).json({msg: err.message})
     }
