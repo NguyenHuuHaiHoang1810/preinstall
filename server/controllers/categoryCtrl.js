@@ -32,9 +32,30 @@ const categoryCtrl = {
     }
   },
 
-  deleteCategory: async (req, res) => {},
+  deleteCategory: async (req, res) => {
+    try {
+      // const products = await Products.findOne({ category: req.param.id });
+      // if (products)
+      //   return res
+      //     .status(400)
+      //     .json({ msg: "Hãy xóa hết các sản phẩm đi kèm!" });
 
-  updateCategory: async (req, res) => {},
+      await Category.findByIdAndDelete(req.param.id);
+      res.json({ msg: "Đã xóa danh mục thành công!" });
+    } catch (error) {
+      res.status(500).json({ msg: error.msg });
+    }
+  },
+
+  updateCategory: async (req, res) => {
+    try {
+      const { name } = req.body;
+      await Category.findOneAndUpdate({ _id: req.param.id }, { name });
+      res.status(400).json({ msg: "Cập nhật danh mục thành công!" });
+    } catch (error) {
+      res.status(500).json(error.msg);
+    }
+  },
 };
 
 module.exports = categoryCtrl;
