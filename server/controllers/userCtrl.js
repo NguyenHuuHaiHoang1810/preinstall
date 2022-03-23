@@ -1,6 +1,7 @@
 const Users = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Payments = require("../models/paymentModel");
 
 const userCtrl = {
   register: async (req, res) => {
@@ -112,9 +113,31 @@ const userCtrl = {
     }
   },
 
-  addCart: async (req, res) => {},
+  addCart: async (req, res) => {
+    try {
+      const user = await Users.findById(req.user.id);
+      if (!user)
+        return res.status(400).json({ msg: "Người dùng không tồn tại!" });
 
-  history: async (req, res) => {},
+      await Users.findOneAndUpdate(
+        { _id: req.user.id },
+        {
+          cart: req.body.cart,
+        }
+      );
+    } catch (error) {
+      res.status(500).json({ msg: error.msg });
+    }
+  },
+
+  history: async (req, res) => {
+    try {
+      const history = await Payments.find({ user_id: req.user.id });
+      res.josn(history);
+    } catch (error) {
+      res.status(400).json({ msg: error.msg });
+    }
+  },
 };
 
 const createAccessToken = (user) => {
