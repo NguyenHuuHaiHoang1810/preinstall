@@ -1,0 +1,37 @@
+import React, {useState, useContext} from 'react'
+import {GlobalState} from '../../../GlobaState'
+
+function Categories() {
+    const state = useContext(GlobalState)
+    const [categories, setCategories] =state.categoriesAPI.categories
+    const [category, setCategory] = useState('')
+
+
+    return (
+        <div className="categories">
+            <from>
+                <label htmlFor="category">Category</label>
+                <input type="text" name="category" value={category} required 
+                 onChange={e => setCategory(e.target.value)} />
+
+                <button type="Submit" >Save</button>
+            </from>
+
+            <div className="col">
+                {
+                    categories.map(category =>(
+                        <div className="rox" key={category._id}>
+                            <p>{category.name}</p>
+                            <div>
+                                <button>Edit</button>
+                                <button>Delete</button>
+                        </div>
+                        </div>
+                        
+                    ))
+                }
+            </div>
+
+        </div>
+    )
+}
