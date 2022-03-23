@@ -21,7 +21,7 @@ function UserAPI(token) {
           res.data.role === 1 ? setisAdmin(true) : setisAdmin(false); //*check role để set admin
 
           setcart(res.data.cart); //!Trả về giỏ hàng
-        } catch (error) {
+        } catch (err) {
           window.alert(err.respond.data.msg);
         }
       };
