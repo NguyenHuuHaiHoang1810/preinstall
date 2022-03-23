@@ -4,9 +4,9 @@ import axios from "axios";
 function UserAPI(token) {
   //!Check token của người dùng
   const [islogged, setislogged] = useState(false); //?Giá trị ban đầu chưa đăng nhập
-  const [isAdmin, setisAdmin] = useState(false); //?Chưa phải admin
-  const [cart, setcart] = useState([]); //!Tạo giỏ hàng rỗng
-  const [history, sethistory] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false); //?Chưa phải admin
+  const [cart, setCart] = useState([]); //!Tạo giỏ hàng rỗng
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     if (token) {
@@ -18,9 +18,9 @@ function UserAPI(token) {
           });
 
           setislogged(true);
-          res.data.role === 1 ? setisAdmin(true) : setisAdmin(false); //*check role để set admin
+          res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false); //*check role để set admin
 
-          setcart(res.data.cart); //!Trả về giỏ hàng
+          setCart(res.data.cart); //!Trả về giỏ hàng
         } catch (err) {
           window.alert(err.respond.data.msg);
         }
@@ -37,7 +37,7 @@ function UserAPI(token) {
       return item._id !== product._id;
     });
     if (checkcart) {
-      setcart([...cart, { ...product, quantity: 1 }]);
+      setCart([...cart, { ...product, quantity: 1 }]);
 
       await axios.patch(
         "user/addcart",
@@ -49,9 +49,9 @@ function UserAPI(token) {
 
   return {
     islogged: [islogged, setislogged],
-    isAdmin: [isAdmin, setisAdmin],
-    cart: [cart, setcart],
-    history: [history, sethistory],
+    isAdmin: [isAdmin, setIsAdmin],
+    cart: [cart, setCart],
+    history: [history, setHistory],
   };
 }
 
