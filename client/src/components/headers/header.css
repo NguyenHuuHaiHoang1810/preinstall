@@ -9,6 +9,14 @@ header{
     border-bottom: 1px solid #ddd;
 
 }
+/* header .box {
+    background-color:rgb(168, 241, 217);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    min-height: 70px;
+    width: 100%;
+} */
 header.logo{
     flex: 1;
 }

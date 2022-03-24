@@ -10,6 +10,7 @@ function Header (){
   return (
 
     <header>
+      <div class="box">
       <div className="menu">
         <img scr={Menu} alt=""width="30" />
       </div>
@@ -37,6 +38,7 @@ function Header (){
          <img src={Cart} alt=""width="30" />
        </Link>
      </div>
+      </div>
 
 
 
