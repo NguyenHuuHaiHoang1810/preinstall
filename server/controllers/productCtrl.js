@@ -8,7 +8,7 @@ const productCtrl = {
             return res.status(500).json({msg:err.message})
         }
     },
-    creatProduct :async (req,res)=>{
+    createProduct :async (req,res)=>{
         try{
 
         }catch (err){
