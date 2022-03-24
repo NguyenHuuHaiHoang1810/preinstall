@@ -1,77 +1,45 @@
-* {
-  padding: 0px;
-  margin: 0px;
-}
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #977ce7;
-}
 .container {
-  width: 900px;
-  height: 500px;
   background-image: url("./meologin.jpg");
-  /*    chon anh trong may */
   background-size: cover;
+  height: auto;
 }
-form {
-  width: 50%;
-  height: 100px;
-  background: #fff;
-  position: relative;
+.login-page{
+  background-image: url("./meologin.jpg");
+  background-size:cover;
+  max-width: 500px;
+  border: 2px solid rgb(217, 243, 250);
+  border-radius: 5px;
+  padding: 30px;
+  margin: 50px auto;
 }
-form.title {
+.login-page h2{
   text-transform: uppercase;
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  letter-spacing: 2px;
+  color: rgb(255, 255, 255);
 }
-
-form input {
+.login-page form input,
+.login-page form button{
   width: 70%;
-  display: block;
-  margin: 0px auto;
-  margin-bottom: 20px;
-  padding: 10px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #723adb;
-  border-left: 2px solid #7041ff;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0 5px;
+  outline: rgb(3, 165, 206);
+  border: 1px solid rgb(3, 165, 206);
 }
-form.login {
-  width: 200px;
-  height: 40px;
-  margin: 0px auto;
-  display: block;
-  outline: none;
-  border: none;
-  border: none;
-  background: #7041ff;
-  color: #fff;
-  font-weight: bolder;
+.login-page form .row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-form.login:hover {
-  background: #5324dd;
+.login-page form button{
+  width: 100px;
+  background: rgb(83, 184, 231);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-
-form.reg {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
-form.reg i {
-    width: 30px;
-    height: 30px;
-    background-color: rgb(2, 6, 8);
-    line-height: 30px;
-    text-align: center;
-    color: #fff;
-    border-radius: 50%;
-    transition: 0.4s;
-}
-form.red i:hover{
-    background-color: #5324dd;
-    border-radius: 0px;
+.login-page form a{
+  color: orange;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
 }

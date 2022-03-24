@@ -38,3 +38,4 @@ button{
 @import url(./components/headers/header.css);
 @import url(./components/home/products/products.css);
 @import url(./components/home/categories/categories.css);
+@import url(./components/home/auth/login.css);

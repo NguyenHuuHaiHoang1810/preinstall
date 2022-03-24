@@ -33,7 +33,7 @@ function Header() {
   };
 
   const styleMenu = {
-    left: Menu ? 0 : "-100%",
+    left: menu ? 0 : "-100%",
   };
   const loggedRouter = () => {
     return (
@@ -66,6 +66,7 @@ function Header() {
         <li>
           <Link to="/">{isAdmin ? 'Products' : 'Have a good time!'}</Link>
         </li>
+        {isAdmin && adminRouter()}
         {
           isLogged ? loggedRouter() : <li><Link to="/login">Login - Register</Link></li>
         }
@@ -77,7 +78,7 @@ function Header() {
      {
        isAdmin ? ''
        :<div className="cart-icon">
-       <span>0</span>
+       <span>{cart.length}</span>
        <Link to="/cart">
          <img src={Cart} alt="" width="30" />
        </Link>

@@ -25,28 +25,23 @@ function Login() {
         }
     }
     return (
-        <div class="container">
-            <form action="">
-                <h1 class="title">Welcomme</h1>
+            <div className="login-page">
+            <form onSubmit={loginSubmit}>
+                <h2>Login</h2>
                 <input type="email" name="email" required
                 placeholder="Email" value={user.email} onChange={onChangeInput} />
+
                 <input type="password" name="password" required autoComplete="on"
                 placeholder="Password" value={user.password} onChange={onChangeInput} />
-                <button class="login">Login</button>
 
-                <div class="reg">
-                    <i class="fab fa-github"></i>
-                    <i class="fab fa-google"></i>
-                    <i class="fab fa-instagram"></i>
+                <div className="row">
+                    <button type="submit">Login</button>
+                    <button>
+                    <Link to="/register">Register</Link>
+                    </button>
                 </div>
-
-
-
-
             </form>
-
         </div>
-    )
-
+        )
 }
     export default Login
