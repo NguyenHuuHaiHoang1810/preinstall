@@ -34,11 +34,11 @@ const categoryCtrl = {
 
   deleteCategory: async (req, res) => {
     try {
-      // const products = await Products.findOne({ category: req.param.id });
-      // if (products)
-      //   return res
-      //     .status(400)
-      //     .json({ msg: "Hãy xóa hết các sản phẩm đi kèm!" });
+       const products = await Products.findOne({ category: req.param.id });
+      if (products)
+       return res
+       .status(400)
+       .json({ msg: "Hãy xóa hết các sản phẩm đi kèm!" });
 
       await Category.findByIdAndDelete(req.param.id);
       res.json({ msg: "Đã xóa danh mục thành công!" });
