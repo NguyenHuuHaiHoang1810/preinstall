@@ -1,69 +1,49 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
+import {GlobalState} from'../../GlobalState'
+import Menu from './icon/menu.svg'
+import Close from './icon/close.svg'
+import Cart from './icon/cart.svg'
+import {Link} from 'react-router-dom'
 
-export const Header = () => {
+function Header (){
+  const state = useContext (GlobalState)
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">4H-PetShop</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-     <li class="nav-item active">
-        <a class="nav-link" href="#">Shop Cho Cún<span class="sr-only">(current)</span></a>
-      </li>
-    
+    <header>
+      <div className="menu">
+        <img scr={Menu} alt=""width="30" />
+      </div>
 
+     <div className="logo">
+        <h1> 
+          <Link to="/">4H1A Petshop</Link>
+        </h1>
+     </div>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Shop Cho Mèo<span class="sr-only">(current)</span></a>
-      </li>
+     <ul>
+       <li><Link to="/">Products</Link></li>
+       <li><Link to="/login">Login - Register</Link></li>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Đồ Thú Y <span class="sr-only">(current)</span></a>
-      </li>
-      {/* <li class="nav-item active">
-        <a class="nav-link" href="#">Thương Hiệu <span class="sr-only">(current)</span></a>
-      </li> */}
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Giới Thiệu <span class="sr-only">(current)</span></a>
-      </li>
-
-    
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Liên Hệ</a>
-      </li>
+       <li>
+         <img scr={Close} alt=""width="30"classname="menu"/>
+       </li>
 
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
+     </ul>
 
-         <a class="dropdown-item" href="#">Something else here</a>
-      
-        </div>
-      </li>
-      
-  
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-    </form>
-
-
-  </div>
-</nav>
+     <div className="cart-icon">
+       <span>0</span>
+       <Link to="/cart">
+         <img src={Cart} alt=""width="30" />
+       </Link>
+     </div>
 
 
 
+
+
+    </header>
   )
 }
+
 export default Header
