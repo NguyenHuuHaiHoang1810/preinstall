@@ -22,8 +22,8 @@ const productCtrl = {
                 const newProduct = new Products({
                     product_id,title:title.toLowerCase(),price,description,content,images,category
                 })
-
-                res.json(newProduct)
+                await newProduct.save()
+                res.json({msg:"đã tạo 1 sản phẩm"})
 
 
         }catch (err){
@@ -32,14 +32,22 @@ const productCtrl = {
     },
     deleteProduct :async (req,res)=>{
         try{
-
+            await Products.findByIdAndDelete(req.pấm.id)
+            res.json({msg:"sản phẫn đã được xóa"})
         }catch (err){
             return res.status(500).json({msg:err.message})
         }
     },
     uploadProduct :async (req,res)=>{
         try{
+            const {title,price,description,content, images, category} = req.body;
+            if (!images) return res.status(400).json({msg:"không có ảnh nào được upload"})
+            await Products.findOneAndUpdate({_id:req.params.id},{
+                title:title.toLowerCase(),price,description,content,images,category
+            })
 
+            res,json({msg:"san pham da duoc upload"})
+        
         }catch (err){
             return res.status(500).json({msg:err.message})
         }
