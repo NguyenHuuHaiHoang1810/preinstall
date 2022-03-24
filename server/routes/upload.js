@@ -20,7 +20,7 @@ router.post('/upload',auth,authAdmin, (rep,res)=>{
         if (!req.files || Object.keys(req.files).length==0)
             return res.status(400).send("No files were uploaded.")
 
-            const file = req.files;
+            const file = req.files.file;
             if(file.size>1024*1024) {
                 removeTmp(file.tempFilePath)
                 return res.status(400).json({msg: "Size too large"})
@@ -65,7 +65,7 @@ router.post ('/destroy',auth,authAdmin, (req,res)=>{
 
 const removeTmp = (path) =>{
     fs.unlink(path,err => {
-
+        if(err) throw err;
     })
 }
 module.exports = router
