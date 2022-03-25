@@ -33,10 +33,10 @@
 }
 .login-page form button{
   width: 100px;
-  background: rgb(83, 184, 231);
+  background: rgb(103, 135, 204);
   color: white;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 .login-page form a{
   color: orange;
