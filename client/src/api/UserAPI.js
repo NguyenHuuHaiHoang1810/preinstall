@@ -7,6 +7,7 @@ function UserAPI(token) {
   const [isAdmin, setIsAdmin] = useState(false); //?Chưa phải admin
   const [cart, setCart] = useState([]); //!Tạo giỏ hàng rỗng
   const [history, setHistory] = useState([]);
+  
 
   useEffect(() => {
     if (token) {
@@ -27,7 +28,7 @@ function UserAPI(token) {
       };
       getUser();
     }
-  }, [token]);
+  }, [token])
 
   const addCart = async (product) => {
     //?Check logged để có thể trả về giỏ hàng
@@ -51,7 +52,7 @@ function UserAPI(token) {
     islogged: [islogged, setislogged],
     isAdmin: [isAdmin, setIsAdmin],
     cart: [cart, setCart],
-    history: [history, setHistory],
+    history: [history, setHistory]
   };
 }
 

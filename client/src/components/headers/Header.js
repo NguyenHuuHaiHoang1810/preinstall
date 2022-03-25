@@ -1,69 +1,100 @@
-import React from 'react'
+import React, { useContext, useState } from "react";
+import { GlobalState } from "../../GlobalState";
+import Menu from "./icon/menu.svg";
+import Close from "./icon/close.svg";
+import Cart from "./icon/cart.svg";
+import Logos from "./icon/logos.jpg";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-export const Header = () => {
+function Header() {
+  const state = useContext(GlobalState);
+  const [isLogged] = state.userAPI.islogged;
+  const [isAdmin] = state.userAPI.isAdmin;
+  const [cart] = state.userAPI.cart;
+  const [menu, setMenu] = useState(false);
+
+  const logoutUser = async () => {
+    await axios.get("/user/logout");
+    localStorage.removeItem("firstLogin");
+    window.location.href = "/";
+  };
+
+  const adminRouter = () => {
+    return (
+      <>
+        <li>
+          <Link to="/create_product">Create Product</Link>
+        </li>
+        <li>
+          <Link to="/category">Categories</Link>
+        </li>
+      </>
+    );
+  };
+
+  const styleMenu = {
+    left: menu ? 0 : "-100%",
+  };
+  const loggedRouter = () => {
+    return (
+      <>
+        <li>
+          <Link to="/history">History</Link>
+        </li>
+        <li>
+          <Link to="/" onClick={logoutUser}>
+            Logout
+          </Link>
+        </li>
+      </>
+    );
+  };
+
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">4H-PetShop</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <header>
+      <div className="menu" onClick={()=> setMenu(!menu)}>
+        <img scr={Menu} alt="JustaMenu" width="30" />
+      </div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-     <li class="nav-item active">
-        <a class="nav-link" href="#">Shop Cho Cún<span class="sr-only">(current)</span></a>
-      </li>
-    
+      <div className="logo">
+        <h1>
+          <img src={Logos} width="100"/>
+          <Link to="/">{isAdmin ? 'AdminResource' : '4H1A-Petshop'}</Link>
+        </h1>
+      </div>
 
+      <ul style={styleMenu}>
+        <li>
+          <Link to="/">{isAdmin ? 'Products' : 'Have a good time!'}</Link>
+        </li>
+        {isAdmin && adminRouter()}
+        {
+          isLogged ? loggedRouter() : <li><Link to="/login">Login - Register</Link></li>
+        }
+        <li onClick={()=>setMenu(!menu)}>
+          <img scr={Close} alt="" width="30" className="menu" />
+        </li>
+      </ul>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Shop Cho Mèo<span class="sr-only">(current)</span></a>
-      </li>
+     {
+       isAdmin ? ''
+       :<div className="cart-icon">
+       <span>{cart.length}</span>
+       <Link to="/cart">
+         <img src={Cart} width="25" />
+       </Link>
+     </div>
+     }
 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Đồ Thú Y <span class="sr-only">(current)</span></a>
-      </li>
-      {/* <li class="nav-item active">
-        <a class="nav-link" href="#">Thương Hiệu <span class="sr-only">(current)</span></a>
-      </li> */}
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Giới Thiệu <span class="sr-only">(current)</span></a>
-      </li>
-
-    
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Liên Hệ</a>
-      </li>
-
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-
-         <a class="dropdown-item" href="#">Something else here</a>
-      
-        </div>
-      </li>
-      
-  
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-    </form>
+       <form class="form-inline my-2 my-lg-0">
+           <input class="form-control mr-sm-2" type="search" placeholder="Bạn muốn tìm gì ?" aria-label="Search"/>
+           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
 
 
-  </div>
-</nav>
-
-
-
-  )
+    </header>
+  );
 }
-export default Header
+
+export default Header;

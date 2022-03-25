@@ -1,0 +1,45 @@
+.container {
+  background-image: url("./meologin.jpg");
+  background-size: cover;
+  height: auto;
+}
+.login-page{
+  background-image: url("./meologin.jpg");
+  background-size:cover;
+  max-width: 500px;
+  border: 2px solid rgb(217, 243, 250);
+  border-radius: 5px;
+  padding: 30px;
+  margin: 50px auto;
+}
+.login-page h2{
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgb(255, 255, 255);
+}
+.login-page form input,
+.login-page form button{
+  width: 70%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0 5px;
+  outline: rgb(3, 165, 206);
+  border: 1px solid rgb(3, 165, 206);
+}
+.login-page form .row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-page form button{
+  width: 100px;
+  background: rgb(103, 135, 204);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.login-page form a{
+  color: orange;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}

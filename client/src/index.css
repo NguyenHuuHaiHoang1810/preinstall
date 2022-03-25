@@ -12,14 +12,30 @@ code {
     monospace;
 }
 /* Kich thuoc page */
-/*.App{
+.App{
   max-width: 1230px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
   box-shadow: 0 0 35px #eee;
 } 
-*/
+
+
+a{
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+button{
+  border: none;
+  outline: none;
+  background: stransprarent;
+  cursor: pointer;
+}
+/* ----------------------Header-----------------------*/
+
 @import url(./components/headers/header.css);
 @import url(./components/home/products/products.css);
 @import url(./components/home/categories/categories.css);
+@import url(./components/home/auth/login.css);

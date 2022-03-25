@@ -1,71 +1,72 @@
-const router = require ('express').Router()
-const cloudinary = require ('cloudinary')
-const auth = require ('../middleware/auth')
-const authAdmin = require ('../middleware/authAdmin')
-const fs = require ('fs')
+const router = require("express").Router();
+const cloudinary = require("cloudinary");
+const auth = require("../middleware/auth");
+const authAdmin = require("../middleware/authAdmin");
+const fs = require("fs");
 
 //we will upload image on cloudinary
 
 cloudinary.config({
-    cloud_name : process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret:process.env.CLOUD_API_SECRET
-})
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
-//upload image only by ad
+const removeTmp = (path) => {
+  fs.unlink(path, (err) => {
+    if (err) throw err;
+  });
+};
 
-router.post('/upload',auth,authAdmin, (rep,res)=>{
-    try{
-        console.log(req.files)
-        if (!req.files || Object.keys(req.files).length==0)
-            return res.status(400).send("No files were uploaded.")
+//!Chỉ admin mới được upload ảnh
+router.post("/upload", auth, authAdmin, (req, res) => {
+  try {
+    console.log(req.files);
+    if (!req.files || Object.keys(req.files).length === 0)
+      return res.status(400).json("Chưa có file nào được upload.");
 
-            const file = req.files;
-            if(file.size>1024*1024) {
-                removeTmp(file.tempFilePath)
-                return res.status(400).json({msg: "Size too large"})
-            }
-
-            if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png'){
-                removeTmp(file.tempFilePath)
-                return res.status(400).json({msg:"File format is incorrect."})
-            }
-
-            cloudinary.v2.uploader.upload(file.tempFilePath,{folder:"test"},async(err,result)=>{
-                if(err) throw err;
-
-                //after upload will have file tmp
-                removeTmp(file.tempFilePath)
-                res.json({public_id: result.public_id, url:result.secure_url})
-            })
-            res.json('test upload')
-    }catch(err){
-        return res.status(500).json({msg: err.message})
+    const file = req.files.file;
+    if (file.size > 1024 * 1024) {
+      removeTmp(file.tempFilePath);
+      return res.status(400).json({ msg: "Kích thước quá lớn!" });
     }
 
-})
-
-//delete image only by ad
-router.post ('/destroy',auth,authAdmin, (req,res)=>{
-    try{
-        const {public_id} = req.body;
-        if(!public_id) return res.status(400).json({msg:'No images selected'})
-
-        cloudinary.v2.uploader.destroy(public_id,async(err,result)=>{
-            if(err) throw err;
-
-            res.json({msg:"deleted image"})
-        })
-    } catch (err){
-        return res.status(500).json({msg:err.message})
+    if (file.mimetype !== "image/jpeg" && file.mimetype !== "image/png") {
+      removeTmp(file.tempFilePath);
+      return res.status(400).json({ msg: "Không đúng định dạng file!" });
     }
-    
-})
 
+    cloudinary.v2.uploader.upload(
+      file.tempFilePath,
+      { folder: "test" },
+      async (err, result) => {
+        if (err) throw err;
 
-const removeTmp = (path) =>{
-    fs.unlink(path,err => {
+        //!Sau khi upload sẽ có file tmp vì vậy cần xóa đi để cho nhẹ máy
+        removeTmp(file.tempFilePath);
+        res.json({ public_id: result.public_id, url: result.secure_url });
+      }
+    );
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+});
 
-    })
-}
-module.exports = router
+//!Chỉ có thể được xóa bởi admin
+router.post("/destroy", auth, authAdmin, (req, res) => {
+  try {
+    const { public_id } = req.body;
+    if (!public_id)
+      return res.status(400).json({ msg: "Chưa có ảnh được chọn" });
+
+    cloudinary.v2.uploader.destroy(public_id, async (err, result) => {
+      if (err) throw err;
+
+      res.json({ msg: "Đã xóa ảnh!" });
+    });
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+});
+
+module.exports = router;

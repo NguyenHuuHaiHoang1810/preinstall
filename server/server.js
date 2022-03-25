@@ -13,8 +13,8 @@ app.use(fileUpload({
   useTempFiles: true
 }))
 
-
-const URI = process.env.MONGODB_URL;
+//connect to mongodb
+const URI = process.env.MONGODB_URL
 mongoose.connect(
   URI,
   {
@@ -36,4 +36,4 @@ app.use('/api',require('./routes/productRouter'))
 const port = 5000;
 app.listen(port, () => {
   console.log("Server is running on port", port);
-});
+})
