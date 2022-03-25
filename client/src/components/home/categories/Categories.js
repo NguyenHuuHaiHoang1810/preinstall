@@ -61,7 +61,7 @@ function Categories() {
                 <input type="text" name="category" value={category} required 
                  onChange={e => setCategory(e.target.value)} />
 
-                <button type="Submit" >{onEdit? "Update" : "Save"}</button>
+                <button type="Submit" >{onEdit? "Update" : "Create"}</button>
             </from>
 
             <div className="col">
