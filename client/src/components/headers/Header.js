@@ -80,10 +80,17 @@ function Header() {
        :<div className="cart-icon">
        <span>{cart.length}</span>
        <Link to="/cart">
-         <img src={Cart} alt="" width="30" />
+         <img src={Cart} alt="" width="25" />
        </Link>
      </div>
      }
+
+       <form class="form-inline my-2 my-lg-0">
+           <input class="form-control mr-sm-2" type="search" placeholder="Bạn muốn tìm gì ?" aria-label="Search"/>
+           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
+
+
     </header>
   );
 }
