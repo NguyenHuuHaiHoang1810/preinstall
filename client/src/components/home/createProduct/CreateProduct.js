@@ -20,11 +20,16 @@ function CreateProduct() {
     const [loading, setLoading] = useState(false)
 
 
+    const styleUpload = {
+      display: images ? "block" : "none"
+    }
+
+
   return (
     <div className="creat_product">
       <div className="upload">
         <input type="file" name="file" id="file_up"/>
-        <div id="file_img">
+        <div id="file_img" style={styleUpload}>
           <img src="https://bizweb.dktcdn.net/100/346/633/files/2.jpg?v=1553157415877" alt=""/>
           <span>X</span>
         </div>
@@ -50,14 +55,14 @@ function CreateProduct() {
 
         <div className="row">
            <label htmlFor="description">Description</label>
-           <input type="text" name="description" id="description" required
-          value={product.description} />
+           <textarea type="text" name="description" id="description" required
+          value={product.description} rows="5"/>
         </div>
 
         <div className="row">
            <label htmlFor="content">Content</label>
-           <input type="text" name="content" id="content" required
-          value={product.content} />
+           <textarea type="text" name="content" id="content" required
+          value={product.content} rows="7"/>
         </div>
 
         <div className="row">
