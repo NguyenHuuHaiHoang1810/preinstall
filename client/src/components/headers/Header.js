@@ -3,6 +3,7 @@ import { GlobalState } from "../../GlobalState";
 import Menu from "./icon/menu.svg";
 import Close from "./icon/close.svg";
 import Cart from "./icon/cart.svg";
+import Logos from "./icon/logos.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -58,6 +59,7 @@ function Header() {
 
       <div className="logo">
         <h1>
+          <img src={Logos} width="100"/>
           <Link to="/">{isAdmin ? 'AdminResource' : '4H1A-Petshop'}</Link>
         </h1>
       </div>
@@ -80,7 +82,7 @@ function Header() {
        :<div className="cart-icon">
        <span>{cart.length}</span>
        <Link to="/cart">
-         <img src={Cart} alt="" width="25" />
+         <img src={Cart} width="25" />
        </Link>
      </div>
      }
