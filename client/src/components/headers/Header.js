@@ -59,8 +59,8 @@ function Header() {
 
       <div className="logo">
         <h1>
-          <img src={Logos} width="100"/>
-          <Link to="/">{isAdmin ? 'AdminResource' : '4H1A-Petshop'}</Link>
+         <span><img src={Logos} width="100"/></span>
+          <Link to="/">{isAdmin ? 'AdminResource' : '4H1A'}</Link>
         </h1>
       </div>
 
@@ -86,12 +86,6 @@ function Header() {
        </Link>
      </div>
      }
-
-       <form class="form-inline my-2 my-lg-0">
-           <input class="form-control mr-sm-2" type="search" placeholder="Bạn muốn tìm gì ?" aria-label="Search"/>
-           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-        </form>
-
 
     </header>
   );
