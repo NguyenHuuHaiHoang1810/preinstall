@@ -15,17 +15,17 @@ function Products() {
     const [callback, setCallback] = state.productsAPI.callback
     const [loading, setLoading] = useState(false)
     const [isCheck, setIsCheck] = useState(false)
-
+// Check id sản phẩm
     const handleCheck = (id) =>{
         products.forEach(product => {
             if(product._id === id) product.checked = !product.checked
         })
         setProducts([...products])
     }
-
+//  Xoá sản phẩm theo id
     const deleteProduct = async(id, public_id) => {
         try {
-            setLoading(true)
+            setLoading(true) // cập nhật giá trị của state loading
             const destroyImg = axios.post('/api/destroy', {public_id},{
                 headers: {Authorization: token}
             })
@@ -49,7 +49,7 @@ function Products() {
         setProducts([...products])
         setIsCheck(!isCheck)
     }
-
+// xoá tất cả sản phẩm
     const deleteAll = () =>{
         products.forEach(product => {
             if(product.checked) deleteProduct(product._id, product.images.public_id)
