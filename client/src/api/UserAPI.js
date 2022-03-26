@@ -34,7 +34,7 @@ function UserAPI(token) {
     //?Check logged để có thể trả về giỏ hàng
     if (!islogged) return alert("Hãy đăng nhập để tiếp tục mua sắm");
 
-    const checkcart = cart.every((item) => {
+    const checkcart = cart.every(item => {
       return item._id !== product._id;
     });
     if (checkcart) {
@@ -46,12 +46,16 @@ function UserAPI(token) {
         { headers: { Authorization: token } }
       );
     }
+    else {
+      alert("Mặt hàng đã được thêm vào giỏ hàng")
+    }
   };
 
   return {
     islogged: [islogged, setislogged],
     isAdmin: [isAdmin, setIsAdmin],
     cart: [cart, setCart],
+    addCart: addCart,
     history: [history, setHistory]
   };
 }
