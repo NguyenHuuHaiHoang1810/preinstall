@@ -20,38 +20,39 @@ function Pages() {
 
   return (
     <Routes>
-      <Route path="/" element={<Products />} />
-      <Route path="/detail/:id" element={<DetailProduct />} />
-      <Route path="/login" element={islogged ? <NotFound /> : <Login />} />
+      <Route path="/" element={<Products />}></Route>
+      <Route path="/detail/:id" element={<DetailProduct />}></Route>
+      <Route
+        path="/login"
+        element={islogged ? <NotFound /> : <Login />}
+      ></Route>
       <Route
         path="/register"
         element={islogged ? <NotFound /> : <Register />}
-      />
+      ></Route>
       <Route
         path="/category"
         element={isAdmin ? <Categories /> : <NotFound />}
-      />
+      ></Route>
       <Route
         path="/create_product"
         element={isAdmin ? <CreateProduct /> : <NotFound />}
-      />
+      ></Route>
       <Route
         path="/edit_product/:id"
         element={isAdmin ? <CreateProduct /> : <NotFound />}
-      />
+      ></Route>
 
       <Route
         path="/history"
         element={islogged ? <OrderHistory /> : <NotFound />}
-      />
+      ></Route>
       <Route
         path="/history/:id"
         element={islogged ? <OrderDetails /> : <NotFound />}
-      />
+      ></Route>
 
-      <Route path="/cart" element={<Cart />} />
-
-      <Route path="*" element={<NotFound />} />
+      <Route path="/cart" element={<Cart />}></Route>
     </Routes>
   );
 }
