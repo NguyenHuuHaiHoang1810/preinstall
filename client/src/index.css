@@ -30,7 +30,7 @@ ul li {
 button{
   border: none;
   outline: none;
-  background: stransprarent;
+  background: transparent;
   cursor: pointer;
 }
 /* ----------------------Header-----------------------*/
@@ -40,3 +40,4 @@ button{
 @import url(./components/home/categories/categories.css);
 @import url(./components/home/auth/login.css);
 @import url(./components/home/createProduct/createProduct.css);
+@import url(./components/home/utils/productItem/productItem.css);

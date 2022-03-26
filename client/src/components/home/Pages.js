@@ -21,7 +21,7 @@ function Pages() {
   return (
     <Routes>
       <Route path="/" element={<Products />} />
-      <Route path="/detai/:id" element={<DetailProduct />} />
+      <Route path="/detail/:id" element={<DetailProduct />} />
       <Route path="/login" element={islogged ? <NotFound /> : <Login />} />
       <Route
         path="/register"
