@@ -20,26 +20,38 @@ function Pages() {
 
   return (
     <Routes>
-      <Route path="/" element={<Products/>} />
-      <Route path="detai/:id" element={<DetailProduct/>} />
-      <Route path="/login" element={islogged ? <NotFound/> : <Login/>} />
-      <Route path="/register" element={islogged ? <NotFound/> : <Register/>} />
-      <Route path="/category" element={isAdmin ? <Categories/> : <NotFound/>} />
+      <Route path="/" element={<Products />} />
+      <Route path="/detai/:id" element={<DetailProduct />} />
+      <Route path="/login" element={islogged ? <NotFound /> : <Login />} />
+      <Route
+        path="/register"
+        element={islogged ? <NotFound /> : <Register />}
+      />
+      <Route
+        path="/category"
+        element={isAdmin ? <Categories /> : <NotFound />}
+      />
       <Route
         path="/create_product"
-        element={isAdmin ? <CreateProduct/> : <NotFound/>}
+        element={isAdmin ? <CreateProduct /> : <NotFound />}
       />
       <Route
         path="/edit_product/:id"
-        element={isAdmin ? <CreateProduct/> : <NotFound/>}
+        element={isAdmin ? <CreateProduct /> : <NotFound />}
       />
 
-      <Route path="/history" element={islogged ? <OrderHistory/> : <NotFound/>} />
-      <Route path="/history/:id" element={islogged ? <OrderDetails/> : <NotFound/>} />
+      <Route
+        path="/history"
+        element={islogged ? <OrderHistory /> : <NotFound />}
+      />
+      <Route
+        path="/history/:id"
+        element={islogged ? <OrderDetails /> : <NotFound />}
+      />
 
-      <Route path="/cart" element={<Cart/>} />
+      <Route path="/cart" element={<Cart />} />
 
-      <Route path="*" element={<NotFound/>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
