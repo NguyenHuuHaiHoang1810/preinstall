@@ -9,4 +9,4 @@ router.route('payment')
     .post(auth, paymentCtrl.createPayment)
 
 
-    module.exports = router
+module.exports = router
