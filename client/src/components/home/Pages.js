@@ -21,14 +21,14 @@ function Pages() {
   return (
     <Routes>
       <Route path="/" element={<Products />}></Route>
-      <Route path="/detail/:id" element={<DetailProduct />}></Route>
+      <Route path="/detail/:id" element={<DetailProduct />}/>
       <Route
         path="/login"
-        element={islogged ? <NotFound /> : <Login />}
+        element={<Login />}
       ></Route>
       <Route
         path="/register"
-        element={islogged ? <NotFound /> : <Register />}
+        element={<Register />}
       ></Route>
       <Route
         path="/category"
