@@ -99,7 +99,7 @@ const productCtrl = {
                 title:title.toLowerCase(),price,description,content,images,category
             })
 
-            res,json({msg:"san pham da duoc upload"})
+            res.json({msg:"san pham da duoc upload"})
         
         }catch (err){
             return res.status(500).json({msg:err.message})
