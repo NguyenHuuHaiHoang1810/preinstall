@@ -74,7 +74,7 @@
 .create_product form input, textarea{
     width: 100%;
     min-width: 40px;
-    padding: 0 5px;
+    padding: 0 9px;
 }
 .create_product form button{
     width: 200px;

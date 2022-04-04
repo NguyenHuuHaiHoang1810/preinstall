@@ -19,6 +19,37 @@ function CreateProduct() {
     const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
 
+  const [isAdmin] = state.userAPI.isAdmin
+  const [token] = state.token
+  const handleUpload = async e => {
+    e.preventDefault()
+    try {
+      if(!isAdmin) return alert("You're not an Admin")
+      const file = e.target.files[0]
+      
+      if(!file) return alert("File not exist.")
+
+      if(file.size > 1024*1024) //1mb
+        return alert("Size too large!")
+
+      if(file.type !== 'image/jpeg' && file.type !== 'image/png')
+        return alert("File format is incorrect.")
+
+      let formData = new FormData()
+      formData.append('file',file)
+
+      setLoading(true)
+      const res = await axios.post('/api/upload', formData, {
+        headers: {'content-type': 'multipart/form-data', Authorization: token}
+      })
+    setLoading(false)
+    setImages(res.data)
+
+
+    } catch (err) {
+      alert(err.response.data.msg)
+    }
+  }
 
     const styleUpload = {
       display: images ? "block" : "none"
@@ -28,11 +59,15 @@ function CreateProduct() {
   return (
     <div className="creat_product">
       <div className="upload">
-        <input type="file" name="file" id="file_up"/>
-        <div id="file_img" style={styleUpload}>
-          <img src="https://bizweb.dktcdn.net/100/346/633/files/2.jpg?v=1553157415877" alt=""/>
+        <input type="file" name="file" id="file_up" onchange={handleUpload}/>
+        {
+          loading ? <div id="file_img" ><Loading /></div>
+          :<div id="file_img" style={styleUpload}>
+          <img src={images ? images.url : ''} alt=""/>
           <span>X</span>
         </div>
+        }
+        
       </div>
     <form>
       <div className="row">
