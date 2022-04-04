@@ -51,7 +51,7 @@ function Register() {
           name="password"
           required
           placeholder="Password"
-          value={user.user.password}
+          value={user.password}
           onChange={onChangeInput}
         />
 
