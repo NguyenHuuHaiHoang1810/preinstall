@@ -33,8 +33,14 @@ function Register(){
                 <input type="text" name="name" required
                 placeholder="Name" value={user.name} onChange={onChangeInput} />
 
-               <input type="email" name="email" required
-                placeholder="Email" value={user.email} onChange={onChangeInput} />
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Email"
+          value={user.email}
+          onChange={onChangeInput}
+        />
 
                 <input type="password" name="password" required
                 placeholder="Password" value={user.user.password} onChange={onChangeInput} />
