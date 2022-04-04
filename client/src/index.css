@@ -37,7 +37,10 @@ button{
 
 @import url(./components/headers/header.css);
 @import url(./components/home/products/products.css);
+@import url(./components/home/detailProduct/detailProduct.css);
 @import url(./components/home/categories/categories.css);
 @import url(./components/home/auth/login.css);
 @import url(./components/home/createProduct/createProduct.css);
 @import url(./components/home/utils/productItem/productItem.css);
+@import url(./components/home/history/history.css);
+@import url(./components/home/cart/cart.css);
