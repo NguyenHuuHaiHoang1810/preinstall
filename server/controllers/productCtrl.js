@@ -55,12 +55,12 @@ const productCtrl = {
             const products = await features.query
             const features = new APIfeatures(Products.find(),req.query).filtering().sorting().paginating()
             res.json({
-                status :" thanh cong",
+                status :" thành công",
                 result : products.length,
                 products: products
             })
         }catch (err){
-            return res.status(500).json({msg:err.message})
+            return res.status(404).json({msg:"Không thành công. Thử lại"})
         }
     },
     createProduct :async (req,res)=>{
@@ -80,15 +80,15 @@ const productCtrl = {
 
 
         }catch (err){
-            return res.status(500).json({msg:err.message})
+            return res.status(404).json({msg:"Chưa tạo được sản phẩm. Thử lại"})
         }
     },
     deleteProduct :async (req,res)=>{
         try{
-            await Products.findByIdAndDelete(req.pấm.id)
+            await Products.findByIdAndDelete(req.params.id)
             res.json({msg:"sản phẫn đã được xóa"})
         }catch (err){
-            return res.status(500).json({msg:err.message})
+            return res.status(404).json({msg:"Sản phẩm chưa được xóa. Thử lại"})
         }
     },
     uploadProduct :async (req,res)=>{
@@ -102,10 +102,10 @@ const productCtrl = {
             res.json({msg:"san pham da duoc upload"})
         
         }catch (err){
-            return res.status(500).json({msg:err.message})
+            return res.status(404).json({msg:"Chưa upload được ảnh. Thử lại"})
         }
     },
 
 }
 
-module.exports = productCtrl
+module.exports = productCtrl 
