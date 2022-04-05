@@ -74,14 +74,16 @@
 .create_product form input, textarea{
     width: 100%;
     min-width: 40px;
-    padding: 0 9px;
+    padding: 0 8px;
 }
 .create_product form button{
     width: 200px;
     height: 40px;
-    background: #555;
-    color: white;
+    background: rgb(161, 31, 31);
+    color: black;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
 }
+
+

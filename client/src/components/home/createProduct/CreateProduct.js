@@ -51,6 +51,43 @@ function CreateProduct() {
     }
   }
 
+   const handleDestroy = async () => {
+     try {
+       if(!isAdmin) return alert("You're not an Admin")
+       setLoading(true)
+       await axios.post('/api/destroy', {public_id: images.public_id}, {
+         headers: {Authorization: token}
+       })
+       setLoading(false)
+       setImages(false)
+     } catch (err) {
+       alert(err.response.data.msg)
+     }
+   }
+
+   const handleChangeInput = e =>{
+     const {name, value} = e.target
+     setProduct({...product, [name]:value})
+   }
+
+   const handleSubmit = async e =>{
+    e.preventDefault()
+    try {
+     if(!isAdmin) return alert("You're not an Admin")
+     if(!images) return alert("No Image Upload")
+
+     await axios.post('/api/products', {...product, images}, {
+       headers: {Authorization: token}
+     })
+
+     setImages(false)
+     setProduct(initialState)
+    } catch (err) {
+      alert(err.response.data.msg)
+      
+    }
+  }
+   
     const styleUpload = {
       display: images ? "block" : "none"
     }
@@ -64,45 +101,46 @@ function CreateProduct() {
           loading ? <div id="file_img" ><Loading /></div>
           :<div id="file_img" style={styleUpload}>
           <img src={images ? images.url : ''} alt=""/>
-          <span>X</span>
+          <span onClick={handleDestroy}>X</span>
         </div>
         }
         
       </div>
-    <form>
+
+    <form onSubmit={handleSubmit}>
       <div className="row">
         <label htmlFor="product_id">Product ID</label>
         <input type="text" name="product_id" id="product_id" required
-        value={product.product_id} />
+        value={product.product_id} onChange={handleChangeInput} />
       </div>
 
       <div className="row">
         <label htmlFor="title">Title</label>
         <input type="text" name="title" id="title" required
-        value={product.title} />
+        value={product.title} onChange={handleChangeInput}/>
         </div>
 
         <div className="row">
            <label htmlFor="price">Price</label>
            <input type="number" name="price" id="price" required
-          value={product.price} />
+          value={product.price} onChange={handleChangeInput}/>
         </div>
 
         <div className="row">
            <label htmlFor="description">Description</label>
            <textarea type="text" name="description" id="description" required
-          value={product.description} rows="5"/>
+          value={product.description} rows="5" onChange={handleChangeInput}/>
         </div>
 
         <div className="row">
            <label htmlFor="content">Content</label>
            <textarea type="text" name="content" id="content" required
-          value={product.content} rows="7"/>
+          value={product.content} rows="7" onChange={handleChangeInput}/>
         </div>
 
         <div className="row">
            <label htmlFor="categories">Categories: </label>
-           <select name="category" value={product.category}>
+           <select name="category" value={product.category} onChange={handleChangeInput}>
              <option value="">Please select a category</option>
              {
                categories.map(category => {
