@@ -22,9 +22,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzVkOThlZ
 ###
 GET http://localhost:5000/user/infor
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzVkOThlZDM3YWVhOWZjNDJlYzZhOSIsImlhdCI6MTY0Nzc1MzU2MiwiZXhwIjoxNjQ3ODM5OTYyfQ.Nd1aXd8_Nv8GlcDD0RVDB6oN3rlqzcscyfS9-RqPsoQ
-
-{
-  "email": "jim@gmail.com",
-  "password": "jim123"
-}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzU3NjM0Njc5MmRkNmM4NTI3MmZmMyIsImlhdCI6MTY0OTI1Mjk2OCwiZXhwIjoxNjQ5MzM5MzY4fQ.k-pa8JSy0gq1HfqQ548_UVkriXSwfxmWGTt0sQUlQHY
