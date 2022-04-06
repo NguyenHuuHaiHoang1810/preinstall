@@ -117,12 +117,13 @@ function CreateProduct() {
         );
       } else {
         await axios.post(
-          "/api/prodects",
+          "/api/products",
           { ...product, images },
           {
             headers: { Authorization: token },
           }
         );
+        alert("Bạn đã tạo sản phẩm thành công");
       }
       setCallback(!callback);
       history.push("/");

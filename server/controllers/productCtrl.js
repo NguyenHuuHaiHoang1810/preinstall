@@ -1,66 +1,66 @@
 const Products = require ('../models/productModel')
 
-class APIfeatures{
-    constructor(query,queryString){
+class APIfeatures {
+    constructor(query, queryString){
         this.query = query;
         this.queryString = queryString;
     }
     filtering(){
-        const queryObj = {...this.queryString} 
-        
-        const excludeFields = ['page','sort','limit']
-        excludeFields.forEach(el => delete(queryObj[el]))
+       const queryObj = {...this.queryString} //queryString = req.query
 
-        
-        let queryStr = JSON.stringify(queryObj)
-        
-        queryStr - queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g,match => '$' +match)
-        //gte = great than or equal
-        
-        
+       const excludedFields = ['page', 'sort', 'limit']
+       excludedFields.forEach(el => delete(queryObj[el]))
+       
+       let queryStr = JSON.stringify(queryObj)
+       queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
 
-        this.query.find(JSON.parse(queryStr))
-
-        return this;
+    //    gte = greater than or equal
+    //    lte = lesser than or equal
+    //    lt = lesser than
+    //    gt = greater than
+       this.query.find(JSON.parse(queryStr))
+         
+       return this;
     }
 
     sorting(){
-        if (this.queryString.sort){
+        if(this.queryString.sort){
             const sortBy = this.queryString.sort.split(',').join(' ')
             this.query = this.query.sort(sortBy)
+        }else{
+            this.query = this.query.sort('-createdAt')
+        }
 
-        }
-        else {
-            this.query = this.query.sort('-createAt')
-        }
+        return this;
     }
 
     paginating(){
-        const page = this.queryString.page *1 ||1
-        const limit = this.queryString.limit *1 ||3
-        const skip = (page -1) *limit;
-        this.query = this. query.skip(skip).limit(limit)
-
+        const page = this.queryString.page * 1 || 1
+        const limit = this.queryString.limit * 1 || 9
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit)
         return this;
-
     }
 }
 
 
 
 const productCtrl = {
-    getProducts : async(req,res) =>{
-        try{
-            
+    getProducts: async(req, res) =>{
+        try {
+            const features = new APIfeatures(Products.find(), req.query)
+            .filtering().sorting().paginating()
+
             const products = await features.query
-            const features = new APIfeatures(Products.find(),req.query).filtering().sorting().paginating()
+
             res.json({
-                status :" thành công",
-                result : products.length,
+                status: 'success',
+                result: products.length,
                 products: products
             })
-        }catch (err){
-            return res.status(404).json({msg:"Không thành công. Thử lại"})
+            
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
         }
     },
     createProduct :async (req,res)=>{
@@ -86,7 +86,7 @@ const productCtrl = {
     deleteProduct :async (req,res)=>{
         try{
             await Products.findByIdAndDelete(req.params.id)
-            res.json({msg:"sản phẫn đã được xóa"})
+            res.json({msg:"sản phẩm đã được xóa"})
         }catch (err){
             return res.status(404).json({msg:"Sản phẩm chưa được xóa. Thử lại"})
         }
