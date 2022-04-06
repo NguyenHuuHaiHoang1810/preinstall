@@ -37,12 +37,12 @@ app.use("/api", require("./routes/upload"));
 app.use("/api", require("./routes/productRouter"));
 // app.use("/api", require("./routes/paymentRouter"));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-}
+ if (process.env.NODE_ENV === "production") {
+   app.use(express.static("client/build"));
+   app.get("*", (req, res) => {
+     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+   });
+ }
 
 const port = 5000;
 app.listen(port, () => {

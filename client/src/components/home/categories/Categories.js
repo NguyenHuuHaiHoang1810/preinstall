@@ -4,14 +4,14 @@ import axios from "axios";
 
 function Categories() {
   const state = useContext(GlobalState);
-  const [categories] = state.categoriesAPI.categories;
+  const [categories,setCategories] = state.categoriesAPI.categories;
   const [category, setCategory] = useState("");
   const [token] = state.token;
   const [callback, setCallback] = state.categoriesAPI.callback;
   const [onEdit, setOnEdit] = useState(false);
   const [id, setID] = useState("");
 
-  const createCategory = async (e) => {
+  const createCategory = async e => {
     e.preventDefault();
     try {
       if (onEdit) {
@@ -68,10 +68,10 @@ function Categories() {
           name="category"
           value={category}
           required
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={e => setCategory(e.target.value)}
         />
 
-        <button type="Submit">{onEdit ? "Update" : "Create"}</button>
+        <button type="Submit">{onEdit ? "Update" : "Save"}</button>
       </from>
 
       <div className="col">
