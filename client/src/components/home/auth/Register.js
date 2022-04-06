@@ -19,6 +19,7 @@ function Register() {
       await axios.post("/user/register", { ...user });
       localStorage.setItem("firstLogin", true);
       window.location.href = "/";
+      alert("Bạn đã đăng ký thành công")
     } catch (err) {
       alert(err.response.data.msg);
     }
