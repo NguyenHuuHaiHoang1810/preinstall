@@ -79,8 +79,8 @@
 .create_product form button{
     width: 200px;
     height: 40px;
-    background: rgb(161, 31, 31);
-    color: black;
+    background: rgb(253, 167, 46);
+    color: rgb(247, 243, 243);
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
