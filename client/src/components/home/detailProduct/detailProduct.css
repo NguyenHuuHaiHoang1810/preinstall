@@ -3,11 +3,11 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 50px;
-    font-size: 150%;
+    padding: 40px;
+    font-size: 120%;
 }
 .detail img{
-    max-width: 400px;
+    max-width: 490px;
     width: 100%;
     margin: 20px;
     height: 450px;
@@ -17,11 +17,11 @@
 .box-detail{
     max-width: 500px;
     width: 100%;
-    margin: 5px 20px;
+    margin: 7px 20px;
 }
 .box-detail .row{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
 }
 .box-detail h2{
