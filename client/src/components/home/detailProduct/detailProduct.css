@@ -1,0 +1,46 @@
+.detail{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 50px;
+    font-size: 150%;
+}
+.detail img{
+    max-width: 400px;
+    width: 100%;
+    margin: 20px;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+}
+.box-detail{
+    max-width: 500px;
+    width: 100%;
+    margin: 5px 20px;
+}
+.box-detail .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box-detail h2{
+    text-transform: uppercase;
+    color: rgb(221, 94, 9);
+    letter-spacing: 1px;
+    font-weight: 2rem;
+}
+.box-detail p{
+    line-height: 1;
+    margin: 9px 0;
+    opacity: 0.9;
+}
+.box-detail .cart{
+    background: rgb(221, 135, 5);
+    color: white;
+    margin-top: 8px;
+    padding: 6px 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
