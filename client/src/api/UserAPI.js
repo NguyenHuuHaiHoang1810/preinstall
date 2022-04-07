@@ -69,7 +69,7 @@ function UserAPI(token) {
       );
     }
     else {
-      alert("Mặt hàng đã được thêm vào giỏ hàng")
+      alert("Mặt hàng đã được thêm vào giỏ !! ")
     }
   }
 
