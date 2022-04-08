@@ -40,7 +40,7 @@ const categoryCtrl = {
        .status(400)
        .json({ msg: "Hãy xóa hết các sản phẩm đi kèm!" });
 
-      await Category.findByIdAndDelete(req.param.id);
+      await Category.findByIdAndDelete(req.params.id);
       res.json({ msg: "Đã xóa danh mục thành công!" });
     } catch (error) {
       res.status(500).json({ msg: error.msg });
@@ -50,10 +50,10 @@ const categoryCtrl = {
   updateCategory: async (req, res) => {
     try {
       const { name } = req.body;
-      await Category.findOneAndUpdate({ _id: req.param.id }, { name });
-      res.status(400).json({ msg: "Cập nhật danh mục thành công!" });
+      await Category.findOneAndUpdate({_id: req.params.id }, { name });
+      res.json({ msg: "Cập nhật danh mục thành công!" });
     } catch (error) {
-      res.status(500).json(error.msg);
+       res.status(500).json({msg: error.msg});
     }
   },
 };

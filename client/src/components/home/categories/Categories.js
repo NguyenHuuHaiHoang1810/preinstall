@@ -12,52 +12,52 @@ function Categories() {
   const [id, setID] = useState("");
 
   const createCategory = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       if (onEdit) {
         const res = await axios.put(
           `/api/category/${id}`,
           { name: category },
           {
-            headers: { Authorization: token },
+            headers: { Authorization: token }
           }
-        );
-        alert(res.data.msg);
+        )
+        alert(res.data.msg)
       } else {
         const res = await axios.post(
-          "/api/category",
+          '/api/category',
           { name: category },
           {
-            headers: { Authorization: token },
+            headers: { Authorization: token }
           }
-        );
-        alert(res.data.msg);
+        )
+        alert(res.data.msg)
       }
-      setOnEdit(false);
-      setCategory("");
-      setCallback(!callback);
+      setOnEdit(false)
+      setCategory('')
+      setCallback(!callback)
     } catch (err) {
-      alert(err.response.data.msg);
+      alert(err.response.data.msg)
     }
-  };
+  }
 
   const editCategory = async (id, name) => {
-    setID(id);
-    setCategory(name);
-    setOnEdit(true);
-  };
+    setID(id)
+    setCategory(name)
+    setOnEdit(true)
+  }
 
   const deleteCategory = async (id) => {
     try {
       const res = await axios.delete(`/api/category/${id}`, {
-        headers: { Authorization: token },
-      });
-      alert(res.data.msg);
-      setCallback(!callback);
+        headers: { Authorization: token }
+      })
+      alert(res.data.msg)
+      setCallback(!callback)
     } catch (err) {
       alert(err.response.data.msg);
     }
-  };
+  }
 
   return (
     <div className="categories">
