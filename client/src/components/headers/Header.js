@@ -66,7 +66,7 @@ function Header() {
 
       <ul style={styleMenu}>
         <li>
-          <Link to="/">{isAdmin ? 'Products' : 'Have a good time!'}</Link>
+          <Link to="/">{isAdmin ? 'Sản Phẩm' : 'Have a good time!'}</Link>
         </li>
         {isAdmin && adminRouter()}
         {

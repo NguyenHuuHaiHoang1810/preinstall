@@ -9,8 +9,7 @@ import LoadMore from './LoadMore'
 
 function Products() {
     const state = useContext(GlobalState)
-    const [products, setProducts] = state.productsAPI.products
-    
+    const [products, setProducts] = state.productsAPI.products 
     const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
     const [callback, setCallback] = state.productsAPI.callback
@@ -65,9 +64,9 @@ function Products() {
         {
             isAdmin && 
             <div className="delete-all">
-                <span>Select all</span>
+                <span>Chọn tất cả</span>
                 <input type="checkbox" checked={isCheck} onChange={checkAll} />
-                <button onClick={deleteAll}>Delete ALL</button>
+                <button onClick={deleteAll}>Xóa tất cả</button>
             </div>
         }
 
