@@ -24,10 +24,10 @@ function Header() {
     return (
       <>
         <li>
-          <Link to="/create_product">Create Product</Link>
+          <Link to="/create_product">Tạo sản phẩm</Link>
         </li>
         <li>
-          <Link to="/category">Categories</Link>
+          <Link to="/category">Danh mục</Link>
         </li>
       </>
     );
@@ -40,11 +40,11 @@ function Header() {
     return (
       <>
         <li>
-          <Link to="/history">History</Link>
+          <Link to="/history">Lịch sử mua</Link>
         </li>
         <li>
           <Link to="/" onClick={logoutUser}>
-            Logout
+            Đăng xuất
           </Link>
         </li>
       </>
@@ -59,7 +59,7 @@ function Header() {
 
       <div className="logo">
         <h1>
-         <span><img src={Logos} width="100"/></span>
+         <span><img src={Logos} alt="logo" width="100"/></span>
           <Link to="/">{isAdmin ? 'AdminResource' : '4H1A'}</Link>
         </h1>
       </div>
@@ -70,7 +70,7 @@ function Header() {
         </li>
         {isAdmin && adminRouter()}
         {
-          isLogged ? loggedRouter() : <li><Link to="/login">Login - Register</Link></li>
+          isLogged ? loggedRouter() : <li><Link to="/login">Đăng nhập - Đăng xuất</Link></li>
         }
         <li onClick={()=>setMenu(!menu)}>
           <img scr={Close} alt="" width="30" className="menu" />
@@ -82,7 +82,7 @@ function Header() {
        :<div className="cart-icon">
        <span>{cart.length}</span>
        <Link to="/cart">
-         <img src={Cart} width="25" />
+         <img src={Cart} alt="giỏ hàng" width="25" />
        </Link>
      </div>
      }
