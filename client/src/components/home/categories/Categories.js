@@ -4,14 +4,14 @@ import axios from "axios";
 
 function Categories() {
   const state = useContext(GlobalState);
-  const [categories,setCategories] = state.categoriesAPI.categories;
+  const [categories] = state.categoriesAPI.categories;
   const [category, setCategory] = useState("");
   const [token] = state.token;
   const [callback, setCallback] = state.categoriesAPI.callback;
   const [onEdit, setOnEdit] = useState(false);
   const [id, setID] = useState("");
 
-  const createCategory = async e => {
+  const createCategory = async (e) => {
     e.preventDefault();
     try {
       if (onEdit) {
@@ -61,18 +61,18 @@ function Categories() {
 
   return (
     <div className="categories">
-      <from onSubmit={createCategory}>
+      <form onSubmit={createCategory}>
         <label htmlFor="category">Category</label>
         <input
           type="text"
           name="category"
           value={category}
           required
-          onChange={e => setCategory(e.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
         />
 
-        <button type="Submit">{onEdit ? "Update" : "Save"}</button>
-      </from>
+        <button type="submit">{onEdit ? "Update" : "Lưu"}</button>
+      </form>
 
       <div className="col">
         {categories.map((category) => (
@@ -80,11 +80,9 @@ function Categories() {
             <p>{category.name}</p>
             <div>
               <button onClick={() => editCategory(category._id, category.name)}>
-                Edit
+                Sửa
               </button>
-              <button onClick={() => deleteCategory(category._id)}>
-                Delete
-              </button>
+              <button onClick={() => deleteCategory(category._id)}>Xóa</button>
             </div>
           </div>
         ))}
