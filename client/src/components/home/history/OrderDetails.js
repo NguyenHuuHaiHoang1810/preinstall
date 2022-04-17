@@ -5,7 +5,7 @@ function OrderDetails() {
 
     return(
         <div>
-            Components
+            Vanh
         </div>
     )
 }
